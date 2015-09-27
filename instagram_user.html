@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+
+<h2>Will's Instagram Fun</h2>
+
+<p id="insta_user"></p>
+<p id="insta_feed"></p>
+
+<script>
+	$.ajax({
+    		url:"http://api.powerreviews.com/display/products/rating",
+    		data:{
+			apikey: "c8b3796c-c5df-40da-aeac-b5fd1bf920cf",
+			page_id: "AB-1200",
+			merchant_id: 913016
+		},
+    		success:function(data) {
+				document.getElementById("insta_user").innerHTML = data[0].average_rating + "<br>"; 
+			}
+		});
+	$.ajax({
+    		url:"http://api.powerreviews.com/display/products/review_count",
+    		data:{
+			apikey: "c8b3796c-c5df-40da-aeac-b5fd1bf920cf",
+			page_id: "AB-1200",
+			merchant_id: 913016
+		},
+    		success:function(data) {
+				document.getElementById("insta_feed").innerHTML = data[0].num_reviews + "<br>"; 
+			}
+		});
+	$.ajax({
+    		url:"http://api.powerreviews.com/display/previews",
+    		data:{
+			apikey: "c8b3796c-c5df-40da-aeac-b5fd1bf920cf",
+			page_id: "AB-1200",
+			merchant_id: 913016,
+			page_size: 10,
+			sort: "created_date desc"
+		},
+    		success:function(data) {
+				document.getElementById("review_count").innerHTML = data[0].num_reviews + "<br>"; 
+			}
+		});	
+
+</script>
+
+</body>
+</html>
